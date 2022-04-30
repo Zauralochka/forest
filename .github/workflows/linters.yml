@@ -1,0 +1,38 @@
+name: linters
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Install python
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.8.3
+    
+    - name: Run image
+        uses: abatilo/actions-poetry@v2.0.0
+        with:
+          poetry-version: ${{ matrix.poetry-version }}
+
+    - name: Install packages
+      run: |
+        python --version
+        poetry install
+
+
+    - name: Flake8 test
+      run: flake8 clean_text.py
+
+    - name: MyPy test
+      run: mypy clean_text.py
+
