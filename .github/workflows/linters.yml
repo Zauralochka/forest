@@ -17,22 +17,23 @@ jobs:
     - name: Install python
       uses: actions/setup-python@v2
       with:
-        python-version: 3.8.3
+        python-version: 3.8
+        
     
-    - name: Run image
-        uses: abatilo/actions-poetry@v2.0.0
-        with:
-          poetry-version: ${{ matrix.poetry-version }}
+   
 
     - name: Install packages
       run: |
+        curl -sSL https://install.python-poetry.org | python3 -
+        echo 'export PATH="$HOME/.local/bin:$PATH"' >> .bashrc
         python --version
+        poetry --version
         poetry install
 
 
     - name: Flake8 test
-      run: flake8 clean_text.py
+      run: poetry run flake8 src
 
     - name: MyPy test
-      run: mypy clean_text.py
+      run: poetry run mypy src
 
