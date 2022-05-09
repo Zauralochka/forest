@@ -30,9 +30,10 @@ jobs:
         poetry --version
         poetry install
 
-      name: Black test 
-      run: poetry run black src
 
+    - name: Black test
+      run: poetry run black src
+    
     - name: Flake8 test
       run: poetry run flake8 src
 
@@ -40,4 +41,4 @@ jobs:
       run: poetry run mypy src
 
 
-    
+   
