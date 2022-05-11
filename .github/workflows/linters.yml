@@ -25,6 +25,7 @@ jobs:
     - name: Install packages
       run: |
         curl -sSL https://install.python-poetry.org | python3 -
+        rm -rf poetry.lock
         echo 'export PATH="$HOME/.local/bin:$PATH"' >> .bashrc
         python --version
         poetry --version
