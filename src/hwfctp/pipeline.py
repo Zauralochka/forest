@@ -1,7 +1,9 @@
 from enum import Enum
+
 import numpy as np
 
 from sklearn.linear_model import LogisticRegression
+from sklearn.model_selection import GridSearchCV
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler
 from sklearn.ensemble import RandomForestClassifier
@@ -14,6 +16,13 @@ class ModelType(Enum):
     LGBM_A = 'lgbm-a'  # 1st stage of hyper-param tuning: tuning model complexity
     LGBM_B = 'lgbm-b'  # 2nd stage of hyper-param tuning: convergence
     LGBM_C = 'lgbm-c'  # final model
+
+
+def create_pipeline(
+    use_scaler: bool,
+    max_iter: int,
+    logreg_C: float,
+    random_state: int,
     model_type: ModelType,
     **kwargs
 ) -> Pipeline:
