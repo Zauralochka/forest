@@ -1,14 +1,13 @@
 # import logging
 import numpy as np
-​
+
 from pathlib import Path
 from typing import Tuple
-​
+
 import click
 import pandas as pd
 from sklearn.model_selection import train_test_split
-​
-​
+
 def get_data(
     csv_path: Path,
     random_state: int,
@@ -22,7 +21,7 @@ def get_data(
         test_size=test_split_ratio, random_state=random_state
     )
     return features_train, features_valid, target_train, target_valid
-​
+    
 def create_submission(predicted_labels, out_file, target='Cover_Type',
                       index_label="Id", init_index=15121):
     # Turn predictions into data frame and save as csv file
